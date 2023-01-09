@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { client } from "../../client";
 import CarouselSlide from "./CarouselSlide";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import SwiperCore, { Navigation } from "swiper";
-// import "swiper/swiper.scss";
-// import "swiper/components/navigation/navigation.scss";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from 'swiper'
+import 'swiper/swiper.scss'
+import 'swiper/components/navigation/navigation.scss'
 
-// SwiperCore.use([Navigation]);
+SwiperCore.use([Navigation])
+
 
 const Carousel = () => {
   const [isCarouselLoading, setIsCarouselLoading] = useState(false);
@@ -53,23 +54,18 @@ const Carousel = () => {
 
   return (
     <div className="carousel">
-      {/* <Swiper navigation> */}
-        {carouselSlides.map((item) => {
-          const { id, slideBg, slideTitle, slidedescription } = item;
-          return (
-            // <SwiperSlide key={id}>
-              <CarouselSlide
-                key={id}
-                slideBg={slideBg}
-                slideTitle={slideTitle}
-                slidedescription={slidedescription}
-              />
-            // </SwiperSlide>
-          );
-        })}
-      {/* </Swiper> */}
+      <Swiper>
+      {carouselSlides.map((item) => {
+        const { id, slideBg, slideTitle, slidedescription } = item;
+        return (
+          <SwiperSlide key={id}>
+          <CarouselSlide key={id} slideBg={slideBg} slideTitle={slideTitle} slidedescription={slidedescription} />
+          </SwiperSlide>
+        )
+      })}
+      </Swiper>
     </div>
-  );
-};
+  )
+}
 
 export default Carousel;
